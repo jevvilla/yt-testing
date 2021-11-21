@@ -1,11 +1,11 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen } from '@testing-library/react';
 
-import { Hello } from "./Hello";
+import { Hello } from './Hello';
 
-// describe("<Hello /> ", () => {
-it("Should render Hello", () => {
-  render(<Hello />);
-  const greet = screen.getByText(/Hello/);
-  expect(greet).toBeInTheDocument();
+describe('<Hello />', () => {
+  it('Should render Hello', () => {
+    render(<Hello />);
+    const greet = screen.getByText(/Hello/);
+    expect(greet).toBeInTheDocument();
+  });
 });
-// });
