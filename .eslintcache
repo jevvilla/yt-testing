@@ -1,0 +1,41 @@
+[
+  {
+    "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Hello/Hello.test.tsx": "1",
+    "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Hello/Hello.tsx": "2"
+  },
+  {
+    "size": 275,
+    "mtime": 1637526456902,
+    "results": "3",
+    "hashOfConfig": "4"
+  },
+  {
+    "size": 85,
+    "mtime": 1637526422513,
+    "results": "5",
+    "hashOfConfig": "4"
+  },
+  {
+    "filePath": "6",
+    "messages": "7",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  "z74x47",
+  {
+    "filePath": "8",
+    "messages": "9",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Hello/Hello.test.tsx",
+  [],
+  "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Hello/Hello.tsx",
+  []
+]
