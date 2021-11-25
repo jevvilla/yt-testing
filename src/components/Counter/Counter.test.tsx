@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react';
+import { waitFor, waitForElementToBeRemoved } from '@testing-library/dom';
 import fireEvent from '@testing-library/user-event';
+
 import { Counter } from './Counter';
 
 describe('<Counter />', () => {
@@ -7,15 +9,21 @@ describe('<Counter />', () => {
     render(<Counter description="my counter" defaultCount={0} />);
 
     expect(screen.getByText(/my counter/)).toBeInTheDocument();
-    expect(screen.getByText(/Current count: 0/)).toBeInTheDocument();
+    expect(
+      screen.getByRole('contentinfo', { name: /countResult/i })
+    ).toHaveTextContent(/^0/);
   });
 
-  it('should sum up 1 when plus (+) button is clicked', () => {
+  it('should sum up 1 when plus (+) button is clicked', async () => {
     render(<Counter description="my counter" defaultCount={0} />);
 
     fireEvent.click(screen.getByRole('button', { name: '+' }));
 
-    expect(screen.getByText(/Current count: 1/)).toBeInTheDocument();
+    await waitFor(() =>
+      expect(
+        screen.getByRole('contentinfo', { name: /countResult/i })
+      ).toHaveTextContent(/^1/)
+    );
   });
 
   it('should subtract 1 when less (-) button is clicked', () => {
@@ -23,6 +31,33 @@ describe('<Counter />', () => {
 
     fireEvent.click(screen.getByRole('button', { name: '-' }));
 
-    expect(screen.getByText(/Current count: -1/)).toBeInTheDocument();
+    expect(
+      screen.getByRole('contentinfo', { name: /countResult/i })
+    ).toHaveTextContent(/^-1/);
+  });
+
+  it('should increment correct amount according to the incrementor value', async () => {
+    render(<Counter description="my counter" defaultCount={0} />);
+
+    const incrementorInput = screen.getByRole('textbox', {
+      name: /incrementor/i,
+    });
+    expect(incrementorInput).toBeInTheDocument();
+
+    fireEvent.type(incrementorInput, '{selectall}5');
+    fireEvent.click(screen.getByRole('button', { name: '+' }));
+
+    await waitFor(() =>
+      expect(
+        screen.getByRole('contentinfo', { name: /countResult/i })
+      ).toHaveTextContent(/^5$/)
+    );
+  });
+
+  it('should show loading when sum (+) button is pressed', async () => {
+    render(<Counter description="my counter" defaultCount={0} />);
+    fireEvent.click(screen.getByRole('button', { name: '+' }));
+
+    await waitForElementToBeRemoved(() => screen.queryByText(/loading/));
   });
 });
