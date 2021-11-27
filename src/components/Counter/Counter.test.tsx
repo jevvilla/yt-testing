@@ -47,17 +47,12 @@ describe('<Counter />', () => {
     fireEvent.type(incrementorInput, '{selectall}5');
     fireEvent.click(screen.getByRole('button', { name: '+' }));
 
+    await waitForElementToBeRemoved(() => screen.queryByText(/loading/));
+
     await waitFor(() =>
       expect(
         screen.getByRole('contentinfo', { name: /countResult/i })
       ).toHaveTextContent(/^5$/)
     );
-  });
-
-  it('should show loading when sum (+) button is pressed', async () => {
-    render(<Counter description="my counter" defaultCount={0} />);
-    fireEvent.click(screen.getByRole('button', { name: '+' }));
-
-    await waitForElementToBeRemoved(() => screen.queryByText(/loading/));
   });
 });

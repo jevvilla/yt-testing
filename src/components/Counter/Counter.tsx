@@ -1,5 +1,7 @@
 import { FormEvent, useState } from 'react';
 
+import { fetchFollowingCount } from '../../utilities/api/counter/apiCounter';
+
 interface Props {
   description: string;
   defaultCount: number;
@@ -10,16 +12,6 @@ export const Counter = ({ description, defaultCount }: Props) => {
   const [incrementor, setIncrementor] = useState('1');
   const [loading, setLoading] = useState(false);
 
-  const fetchFollowingCount = (count: number, fail = false): Promise<number> =>
-    new Promise((resolve, reject) => {
-      setTimeout(() => {
-        if (fail) {
-          reject(new Error("'was not possible reaching the server'"));
-        }
-        resolve(count + Number(incrementor));
-      }, 100);
-    });
-
   const onChangeIncrementor = (event: FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
     setIncrementor(value);
@@ -28,9 +20,8 @@ export const Counter = ({ description, defaultCount }: Props) => {
   const onSumPress = async () => {
     try {
       setLoading(true);
-      const newNumber = await fetchFollowingCount(count);
+      const newNumber = await fetchFollowingCount(count, incrementor);
       setCount(newNumber);
-      console.log('###### newNumber', newNumber);
     } catch (error) {
       console.log('@@@@44', error);
     } finally {

@@ -1,23 +1,51 @@
 [
   {
     "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Hello/Hello.test.tsx": "1",
-    "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Hello/Hello.tsx": "2"
+    "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Hello/Hello.tsx": "2",
+    "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Counter/Counter.test.tsx": "3",
+    "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Counter/Counter.tsx": "4",
+    "/Users/juan.villa/Desktop/testing-lib-poc/src/utilities/api/counter/apiCounter.test.ts": "5",
+    "/Users/juan.villa/Desktop/testing-lib-poc/src/utilities/api/counter/apiCounter.ts": "6"
   },
   {
     "size": 275,
     "mtime": 1637526456902,
-    "results": "3",
-    "hashOfConfig": "4"
+    "results": "7",
+    "hashOfConfig": "8"
   },
   {
     "size": 85,
     "mtime": 1637526422513,
-    "results": "5",
-    "hashOfConfig": "4"
+    "results": "9",
+    "hashOfConfig": "8"
   },
   {
-    "filePath": "6",
-    "messages": "7",
+    "size": 1874,
+    "mtime": 1638015160138,
+    "results": "10",
+    "hashOfConfig": "8"
+  },
+  {
+    "size": 1496,
+    "mtime": 1638014651727,
+    "results": "11",
+    "hashOfConfig": "8"
+  },
+  {
+    "size": 422,
+    "mtime": 1638014582125,
+    "results": "12",
+    "hashOfConfig": "8"
+  },
+  {
+    "size": 329,
+    "mtime": 1638014462807,
+    "results": "13",
+    "hashOfConfig": "8"
+  },
+  {
+    "filePath": "14",
+    "messages": "15",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -26,8 +54,44 @@
   },
   "z74x47",
   {
-    "filePath": "8",
-    "messages": "9",
+    "filePath": "16",
+    "messages": "17",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "18",
+    "messages": "19",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "20",
+    "messages": "21",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "22",
+    "messages": "23",
+    "errorCount": 0,
+    "fatalErrorCount": 0,
+    "warningCount": 0,
+    "fixableErrorCount": 0,
+    "fixableWarningCount": 0
+  },
+  {
+    "filePath": "24",
+    "messages": "25",
     "errorCount": 0,
     "fatalErrorCount": 0,
     "warningCount": 0,
@@ -37,5 +101,13 @@
   "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Hello/Hello.test.tsx",
   [],
   "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Hello/Hello.tsx",
+  [],
+  "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Counter/Counter.test.tsx",
+  [],
+  "/Users/juan.villa/Desktop/testing-lib-poc/src/components/Counter/Counter.tsx",
+  [],
+  "/Users/juan.villa/Desktop/testing-lib-poc/src/utilities/api/counter/apiCounter.test.ts",
+  [],
+  "/Users/juan.villa/Desktop/testing-lib-poc/src/utilities/api/counter/apiCounter.ts",
   []
 ]
