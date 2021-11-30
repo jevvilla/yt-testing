@@ -9,5 +9,5 @@ export const fetchFollowingCount = (
         reject('was not possible reaching the server');
       }
       resolve(count + Number(incrementor));
-    }, 1000);
+    }, 800);
   });

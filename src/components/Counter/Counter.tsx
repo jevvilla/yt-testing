@@ -11,6 +11,7 @@ export const Counter = ({ description, defaultCount }: Props) => {
   const [count, setCount] = useState(defaultCount);
   const [incrementor, setIncrementor] = useState('1');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string>();
 
   const onChangeIncrementor = (event: FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
@@ -23,7 +24,7 @@ export const Counter = ({ description, defaultCount }: Props) => {
       const newNumber = await fetchFollowingCount(count, incrementor);
       setCount(newNumber);
     } catch (error) {
-      console.log('@@@@44', error);
+      setError(error as string);
     } finally {
       setLoading(false);
     }
@@ -45,12 +46,27 @@ export const Counter = ({ description, defaultCount }: Props) => {
       <span role="contentinfo" aria-label="countResult">
         {count}
       </span>
-      {loading && <span>...loading</span>}
       <div>
-        <button onClick={() => onSumPress()}>+</button>
-        <button onClick={() => setCount((currCount) => currCount - 1)}>
+        <button
+          name="increment"
+          aria-label="increment"
+          onClick={() => onSumPress()}
+        >
+          +
+        </button>
+        <button
+          name="decrement"
+          aria-label="decrement"
+          onClick={() => setCount((currCount) => currCount - 1)}
+        >
           -
         </button>
+        {loading && <span>...loading</span>}
+        {error && (
+          <span role="contentinfo" aria-label="error">
+            {error}
+          </span>
+        )}
       </div>
     </div>
   );

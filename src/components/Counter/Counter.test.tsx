@@ -3,6 +3,7 @@ import { waitFor, waitForElementToBeRemoved } from '@testing-library/dom';
 import fireEvent from '@testing-library/user-event';
 
 import { Counter } from './Counter';
+import * as api from '../../utilities/api/counter/apiCounter';
 
 describe('<Counter />', () => {
   it('should render title and default value', () => {
@@ -14,10 +15,10 @@ describe('<Counter />', () => {
     ).toHaveTextContent(/^0/);
   });
 
-  it('should sum up 1 when plus (+) button is clicked', async () => {
+  it('should sum up 1 when increment (+) button is clicked', async () => {
     render(<Counter description="my counter" defaultCount={0} />);
 
-    fireEvent.click(screen.getByRole('button', { name: '+' }));
+    fireEvent.click(screen.getByRole('button', { name: /increment/i }));
 
     await waitFor(() =>
       expect(
@@ -29,7 +30,7 @@ describe('<Counter />', () => {
   it('should subtract 1 when less (-) button is clicked', () => {
     render(<Counter description="my counter" defaultCount={0} />);
 
-    fireEvent.click(screen.getByRole('button', { name: '-' }));
+    fireEvent.click(screen.getByRole('button', { name: /decrement/i }));
 
     expect(
       screen.getByRole('contentinfo', { name: /countResult/i })
@@ -45,7 +46,7 @@ describe('<Counter />', () => {
     expect(incrementorInput).toBeInTheDocument();
 
     fireEvent.type(incrementorInput, '{selectall}5');
-    fireEvent.click(screen.getByRole('button', { name: '+' }));
+    fireEvent.click(screen.getByRole('button', { name: /increment/i }));
 
     await waitForElementToBeRemoved(() => screen.queryByText(/loading/));
 
@@ -54,5 +55,21 @@ describe('<Counter />', () => {
         screen.getByRole('contentinfo', { name: /countResult/i })
       ).toHaveTextContent(/^5$/)
     );
+  });
+
+  it('should fail when trying to increment', async () => {
+    jest
+      .spyOn(api, 'fetchFollowingCount')
+      .mockRejectedValueOnce('cannot calculate value');
+
+    render(<Counter description="my counter" defaultCount={0} />);
+
+    fireEvent.click(screen.getByRole('button', { name: /increment/i }));
+    const errorLabel = await screen.findByRole('contentinfo', {
+      name: 'error',
+    });
+
+    expect(errorLabel).toBeInTheDocument();
+    expect(errorLabel).toHaveTextContent(/^cannot calculate value/);
   });
 });
