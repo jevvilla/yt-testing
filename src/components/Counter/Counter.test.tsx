@@ -1,9 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { waitFor, waitForElementToBeRemoved } from '@testing-library/dom';
+import { waitFor } from '@testing-library/dom';
 import fireEvent from '@testing-library/user-event';
 
 import { Counter } from './Counter';
-import * as api from '../../utilities/api/counter/apiCounter';
 
 describe('<Counter />', () => {
   it('should render title and default value', () => {
@@ -37,7 +36,7 @@ describe('<Counter />', () => {
     ).toHaveTextContent(/^-1/);
   });
 
-  it('should increment correct amount according to the incrementor value', async () => {
+  it('should increment correct amount according to the incrementor value', () => {
     render(<Counter description="my counter" defaultCount={0} />);
 
     const incrementorInput = screen.getByRole('textbox', {
@@ -48,28 +47,8 @@ describe('<Counter />', () => {
     fireEvent.type(incrementorInput, '{selectall}5');
     fireEvent.click(screen.getByRole('button', { name: /increment/i }));
 
-    await waitForElementToBeRemoved(() => screen.queryByText(/loading/));
-
-    await waitFor(() =>
-      expect(
-        screen.getByRole('contentinfo', { name: /countResult/i })
-      ).toHaveTextContent(/^5$/)
-    );
-  });
-
-  it('should fail when trying to increment', async () => {
-    jest
-      .spyOn(api, 'fetchFollowingCount')
-      .mockRejectedValueOnce('cannot calculate value');
-
-    render(<Counter description="my counter" defaultCount={0} />);
-
-    fireEvent.click(screen.getByRole('button', { name: /increment/i }));
-    const errorLabel = await screen.findByRole('contentinfo', {
-      name: 'error',
-    });
-
-    expect(errorLabel).toBeInTheDocument();
-    expect(errorLabel).toHaveTextContent(/^cannot calculate value/);
+    expect(
+      screen.getByRole('contentinfo', { name: /countResult/i })
+    ).toHaveTextContent(/^5$/);
   });
 });
