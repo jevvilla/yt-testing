@@ -1,8 +1,8 @@
 import React, { FormEvent } from 'react';
-import { useCounterState } from '../useCounterState';
+import { useCounter } from '../counterContext';
 
 export const CounterIncrementor = () => {
-  const { setIncrementor, incrementor } = useCounterState();
+  const { setIncrementor, incrementor } = useCounter();
 
   const onChangeIncrementor = (event: FormEvent<HTMLInputElement>) => {
     const { value } = event.currentTarget;
@@ -14,7 +14,6 @@ export const CounterIncrementor = () => {
       <label htmlFor="incrementor">incrementor:</label>
       <input
         role="textbox"
-        type="number"
         aria-label="incrementor"
         value={incrementor}
         onChange={onChangeIncrementor}

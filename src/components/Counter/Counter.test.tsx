@@ -3,6 +3,7 @@ import { waitFor } from '@testing-library/dom';
 import fireEvent from '@testing-library/user-event';
 
 import { Counter } from './Counter';
+import { useCounter } from './counterContext';
 
 describe('<Counter />', () => {
   it('should render title and default value', () => {
@@ -50,5 +51,9 @@ describe('<Counter />', () => {
     expect(
       screen.getByRole('contentinfo', { name: /countResult/i })
     ).toHaveTextContent(/^5$/);
+  });
+
+  it('should throw error when trying to use context out of the Provide', () => {
+    const { counter } = useCounter();
   });
 });

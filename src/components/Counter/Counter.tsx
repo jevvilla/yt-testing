@@ -1,7 +1,7 @@
 import { CounterActions } from './CounterActions/CounterActions';
 import { CounterResult } from './CounterResult/CounterResult';
 import { CounterIncrementor } from './CounterIncrementor/CounterIncrementor';
-import { CounterProvider } from './useCounterState';
+import { CounterProvider } from './counterContext';
 
 interface Props {
   description: string;

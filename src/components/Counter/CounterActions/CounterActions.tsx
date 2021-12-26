@@ -1,23 +1,15 @@
 import React from 'react';
-import { useCounterState } from '../useCounterState';
+import { useCounter } from '../counterContext';
 
 export const CounterActions = () => {
-  const { incrementor, setCounter } = useCounterState();
+  const { increment, decrement } = useCounter();
 
   return (
     <div>
-      <button
-        name="increment"
-        aria-label="increment"
-        onClick={() => setCounter((currCount) => currCount + incrementor)}
-      >
+      <button name="increment" aria-label="increment" onClick={increment}>
         +
       </button>
-      <button
-        name="decrement"
-        aria-label="decrement"
-        onClick={() => setCounter((currCount) => currCount - incrementor)}
-      >
+      <button name="decrement" aria-label="decrement" onClick={decrement}>
         -
       </button>
     </div>

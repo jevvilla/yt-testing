@@ -1,8 +1,8 @@
 import React from 'react';
-import { useCounterState } from '../useCounterState';
+import { useCounter } from '../counterContext';
 
 export const CounterResult = () => {
-  const { counter } = useCounterState();
+  const { counter } = useCounter();
 
   return (
     <div>
